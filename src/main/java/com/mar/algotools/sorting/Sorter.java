@@ -16,8 +16,9 @@ public class Sorter {
 
     public static class IndexedDoubleComparator implements MyComparator {
         /**
-         * Compare the Indexeddouble a and b. Returns -1 if a is lower than b order, 1 if b is lower than a or 0 if a is
-         * equal to b.
+         * Compare the Indexeddouble a and b. Returns -1 if a is lower than b
+         * order, 1 if b is lower than a or 0 if a is equal to b.
+         *
          * @param ao
          * @param bo
          * @return -1 if a < b, 0 if a = b and 1 if b < a.
@@ -50,8 +51,9 @@ public class Sorter {
 
     public static class IndexedIntComparator implements MyComparator {
         /**
-         * Compare the IndexedInt a and b. Returns -1 if a lower than b order, 1 if b is lower than a or 0 if a is equal
-         * to b.
+         * Compare the IndexedInt a and b. Returns -1 if a lower than b order, 1
+         * if b is lower than a or 0 if a is equal to b.
+         *
          * @param ao
          * @param bo
          * @return -1 if a < b, 0 if a = b and 1 if b < a.
@@ -84,8 +86,10 @@ public class Sorter {
 
     public static class IndexedStringComparator implements MyComparator {
         /**
-         * Compare the Strings a and b. Returns -1 if a is first in lexicographic order, 1 if b is first in
-         * lexicographic order or 0 if a is equal to b.
+         * Compare the Strings a and b. Returns -1 if a is first in
+         * lexicographic order, 1 if b is first in lexicographic order or 0 if a
+         * is equal to b.
+         *
          * @param a
          *            an integer array.
          * @param b
@@ -128,8 +132,10 @@ public class Sorter {
     public static final int DESCEND = -1;
 
     /**
-     * Sorts the specified ArrayList<Integer> according to the specified order, and returns the sorted indexes. idx[i] =
-     * j means that the ith element in the sorted array is the element j in the original array.
+     * Sorts the specified ArrayList<Integer> according to the specified order,
+     * and returns the sorted indexes. idx[i] = j means that the ith element in
+     * the sorted array is the element j in the original array.
+     *
      * @param data
      * @param type
      * @return
@@ -147,8 +153,7 @@ public class Sorter {
         for (int i = 0; i < data.size(); ++i) {
             if (type == ASCEND) {
                 idx[i] = sorted[i].idx;
-            }
-            else {
+            } else {
                 idx[i] = sorted[data.size() - 1 - i].idx;
             }
         }
@@ -157,8 +162,9 @@ public class Sorter {
     }
 
     /**
-     * Returns the new indexes that the elements of the specified array have to occupy in order to be sorted according
-     * to the specified order.
+     * Returns the new indexes that the elements of the specified array have to
+     * occupy in order to be sorted according to the specified order.
+     *
      * @param data
      * @param type
      * @return
@@ -176,8 +182,7 @@ public class Sorter {
         for (int i = 0; i < data.length; ++i) {
             if (type == ASCEND) {
                 idx[i] = sorted[i].idx;
-            }
-            else {
+            } else {
                 idx[i] = sorted[data.length - 1 - i].idx;
             }
         }
@@ -186,8 +191,9 @@ public class Sorter {
     }
 
     /**
-     * Returns the new indexes that the elements of the specified array have to occupy in order to be sorted according
-     * to the specified order.
+     * Returns the new indexes that the elements of the specified array have to
+     * occupy in order to be sorted according to the specified order.
+     *
      * @param data
      * @param type
      * @return
@@ -205,8 +211,7 @@ public class Sorter {
         for (int i = 0; i < data.length; ++i) {
             if (type == ASCEND) {
                 idx[i] = sorted[i].idx;
-            }
-            else {
+            } else {
                 idx[i] = sorted[data.length - 1 - i].idx;
             }
         }
@@ -217,8 +222,10 @@ public class Sorter {
     // Comparator classes.
 
     /**
-     * Sorts the specified string array according to the specified order, and returns the sorted indexes. idx[i] = j
-     * means that the ith element in the sorted array is the element j in the original array.
+     * Sorts the specified string array according to the specified order, and
+     * returns the sorted indexes. idx[i] = j means that the ith element in the
+     * sorted array is the element j in the original array.
+     *
      * @param data
      * @param type
      * @return
@@ -236,8 +243,7 @@ public class Sorter {
         for (int i = 0; i < data.length; ++i) {
             if (type == ASCEND) {
                 idx[i] = sorted[i].idx;
-            }
-            else {
+            } else {
                 idx[i] = sorted[data.length - 1 - i].idx;
             }
         }
@@ -246,26 +252,28 @@ public class Sorter {
     }
 
     /**
-     * Returns the ArrayList<Integer> sorted according to the specified direction.
+     * Returns the ArrayList<Integer> sorted according to the specified
+     * direction.
+     *
      * @param data
      * @param type
      * @return
      */
-    public static ArrayList<Integer> sort(ArrayList<Integer> data, int type) {
-
-        int[] arrayData = new int[data.size()];
-        for (int i = 0; i < arrayData.length; ++i) {
-            arrayData[i] = data.get(i);
+    public static ArrayList<String> sort(ArrayList<String> data, int type) {
+        IndexedStringComparator comp = new IndexedStringComparator();
+        IndexedString[] idxdata = new IndexedString[data.size()];
+        for (int i = 0; i < idxdata.length; ++i) {
+            idxdata[i] = new IndexedString(data.get(i), i);
         }
-        int[] sorted = Sorting.quicksort(arrayData);
-        ArrayList<Integer> out = new ArrayList<Integer>(arrayData.length);
 
-        for (int i = 0; i < arrayData.length; ++i) {
+        IndexedString[] sorted = (IndexedString[]) Sorting.quicksort(idxdata, comp);
+        ArrayList<String> out = new ArrayList<String>(idxdata.length);
+
+        for (int i = 0; i < idxdata.length; ++i) {
             if (type == ASCEND) {
-                out.add(sorted[i]);
-            }
-            else {
-                out.add(sorted[arrayData.length - 1 - i]);
+                out.add(sorted[i].s);
+            } else {
+                out.add(sorted[idxdata.length - 1 - i].s);
             }
         }
 
@@ -273,7 +281,9 @@ public class Sorter {
     }
 
     /**
-     * Returns a new array containing the element of the specified array sorted as specified by the type parameter.
+     * Returns a new array containing the element of the specified array sorted
+     * as specified by the type parameter.
+     *
      * @param data
      * @param type
      * @return
@@ -285,8 +295,7 @@ public class Sorter {
         for (int i = 0; i < data.length; ++i) {
             if (type == Sorter.ASCEND) {
                 out[i] = temp[i];
-            }
-            else {
+            } else {
                 out[i] = temp[data.length - 1 - i];
             }
         }
@@ -295,7 +304,9 @@ public class Sorter {
     }
 
     /**
-     * Returns a new array containing the element of the specified array sorted as specified by the type parameter.
+     * Returns a new array containing the element of the specified array sorted
+     * as specified by the type parameter.
+     *
      * @param data
      * @param type
      * @return
@@ -307,8 +318,7 @@ public class Sorter {
         for (int i = 0; i < data.length; ++i) {
             if (type == Sorter.ASCEND) {
                 out[i] = temp[i];
-            }
-            else {
+            } else {
                 out[i] = temp[data.length - 1 - i];
             }
         }
@@ -318,6 +328,7 @@ public class Sorter {
 
     /**
      * Returns the string array sorted according to the specified direction.
+     *
      * @param data
      * @param type
      * @return
@@ -331,9 +342,36 @@ public class Sorter {
         for (int i = 0; i < data.length; ++i) {
             if (type == ASCEND) {
                 out[i] = sorted[i];
-            }
-            else {
+            } else {
                 out[i] = sorted[data.length - 1 - i];
+            }
+        }
+
+        return out;
+    }
+
+    /**
+     * Returns the ArrayList<Integer> sorted according to the specified
+     * direction.
+     *
+     * @param data
+     * @param type
+     * @return
+     */
+    public static ArrayList<Integer> sortInt(ArrayList<Integer> data, int type) {
+
+        int[] arrayData = new int[data.size()];
+        for (int i = 0; i < arrayData.length; ++i) {
+            arrayData[i] = data.get(i);
+        }
+        int[] sorted = Sorting.quicksort(arrayData);
+        ArrayList<Integer> out = new ArrayList<Integer>(arrayData.length);
+
+        for (int i = 0; i < arrayData.length; ++i) {
+            if (type == ASCEND) {
+                out.add(sorted[i]);
+            } else {
+                out.add(sorted[arrayData.length - 1 - i]);
             }
         }
 

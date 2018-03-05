@@ -1,13 +1,15 @@
 package com.mar.algotools.mathematics.utils;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 public class ArrayOps {
 
     /**
-     * Returns the index of the first occurrence of the specified value in the specified array. Returns -1 if there are
-     * no occurrences.
+     * Returns the index of the first occurrence of the specified value in the
+     * specified array. Returns -1 if there are no occurrences.
+     * 
      * @param a
      * @param x
      * @return
@@ -22,8 +24,27 @@ public class ArrayOps {
     }
 
     /**
-     * Returns the index of the first occurrence of the specified value in the specified array. Returns -1 if there are
-     * no occurrences.
+     * Returns the index of the first occurrence of the specified value in the
+     * specified list. Returns -1 if there are no occurrences. Comparison is
+     * done using the equals() method.
+     * 
+     * @param v
+     * @param x
+     * @return
+     */
+    public static <T> int find(List<T> pList, T pValue) {
+        for (int i = 0; i < pList.size(); ++i) {
+            if (pList.get(i).equals(pValue)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns the index of the first occurrence of the specified value in the
+     * specified array. Returns -1 if there are no occurrences.
+     * 
      * @param a
      * @param x
      * @return
@@ -38,8 +59,9 @@ public class ArrayOps {
     }
 
     /**
-     * Returns the index of the first occurrence of the specified value in the specified vector. Returns -1 if there are
-     * no occurrences.
+     * Returns the index of the first occurrence of the specified value in the
+     * specified vector. Returns -1 if there are no occurrences.
+     * 
      * @param v
      * @param x
      * @return
@@ -54,8 +76,9 @@ public class ArrayOps {
     }
 
     /**
-     * Returns the index of the first occurrence of the specified value in the specified vector. Returns -1 if there are
-     * no occurrences.
+     * Returns the index of the first occurrence of the specified value in the
+     * specified vector. Returns -1 if there are no occurrences.
+     * 
      * @param v
      * @param x
      * @return
@@ -70,7 +93,9 @@ public class ArrayOps {
     }
 
     /**
-     * Returns a portion of the selected array, from index idxa to index idxb included.
+     * Returns a portion of the selected array, from index idxa to index idxb
+     * included.
+     * 
      * @param a
      * @param idxa
      * @param idxb
@@ -90,6 +115,7 @@ public class ArrayOps {
 
     /**
      * Returns a portion of the selected 2D array.
+     * 
      * @param a
      * @param rowa
      * @param rowb
@@ -98,7 +124,7 @@ public class ArrayOps {
      * @return
      */
     public static boolean[][] getSelection(final boolean[][] a, final int rowa, final int rowb, final int cola,
-        final int colb) {
+            final int colb) {
         final boolean[][] b = new boolean[rowb - rowa + 1][colb - cola + 1];
         for (int i = rowa; i <= rowb; ++i) {
             for (int j = cola; j <= colb; ++j) {
@@ -109,7 +135,9 @@ public class ArrayOps {
     }
 
     /**
-     * Returns a portion of the selected array, from index idxa to index idxb included.
+     * Returns a portion of the selected array, from index idxa to index idxb
+     * included.
+     * 
      * @param a
      * @param idxa
      * @param idxb
@@ -129,6 +157,7 @@ public class ArrayOps {
 
     /**
      * Returns a portion of the selected 2D array.
+     * 
      * @param a
      * @param rowa
      * @param rowb
@@ -137,7 +166,7 @@ public class ArrayOps {
      * @return
      */
     public static double[][] getSelection(final double[][] a, final int rowa, final int rowb, final int cola,
-        final int colb) {
+            final int colb) {
         final double[][] b = new double[rowb - rowa + 1][colb - cola + 1];
         for (int i = rowa; i <= rowb; ++i) {
             for (int j = cola; j <= colb; ++j) {
@@ -148,7 +177,9 @@ public class ArrayOps {
     }
 
     /**
-     * Returns a portion of the selected array, from index idxa to index idxb included.
+     * Returns a portion of the selected array, from index idxa to index idxb
+     * included.
+     * 
      * @param a
      * @param idxa
      * @param idxb
@@ -168,6 +199,7 @@ public class ArrayOps {
 
     /**
      * Returns a portion of the selected 2D array.
+     * 
      * @param a
      * @param rowa
      * @param rowb
@@ -175,7 +207,8 @@ public class ArrayOps {
      * @param colb
      * @return
      */
-    public static int[][] getSelection(final int[][] a, final int rowa, final int rowb, final int cola, final int colb) {
+    public static int[][] getSelection(final int[][] a, final int rowa, final int rowb, final int cola,
+            final int colb) {
         final int[][] b = new int[rowb - rowa + 1][colb - cola + 1];
         for (int i = rowa; i <= rowb; ++i) {
             for (int j = cola; j <= colb; ++j) {
@@ -187,6 +220,7 @@ public class ArrayOps {
 
     /**
      * Returns the mirrored list.
+     * 
      * @param pV
      * @return
      */
@@ -200,8 +234,9 @@ public class ArrayOps {
     }
 
     /**
-     * Returns a rotated version of the specified array. offset > 0 means rotating to the right, offset < 0 means
-     * rotating to the left.
+     * Returns a rotated version of the specified array. offset > 0 means
+     * rotating to the right, offset < 0 means rotating to the left.
+     * 
      * @param a
      * @param offset
      * @return
@@ -215,8 +250,9 @@ public class ArrayOps {
     }
 
     /**
-     * Returns a rotated version of the specified array. offset > 0 means rotating to the right, offset < 0 means
-     * rotating to the left.
+     * Returns a rotated version of the specified array. offset > 0 means
+     * rotating to the right, offset < 0 means rotating to the left.
+     * 
      * @param a
      * @param offset
      * @return
@@ -230,8 +266,9 @@ public class ArrayOps {
     }
 
     /**
-     * Returns a rotated version of the specified array. offset > 0 means rotating to the right, offset < 0 means
-     * rotating to the left.
+     * Returns a rotated version of the specified array. offset > 0 means
+     * rotating to the right, offset < 0 means rotating to the left.
+     * 
      * @param a
      * @param offset
      * @return

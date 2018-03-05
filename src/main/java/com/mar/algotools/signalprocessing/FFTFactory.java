@@ -1,6 +1,6 @@
 package com.mar.algotools.signalprocessing;
 
-import com.mar.framework.core.logging.Logger;
+import com.mar.framework.core.logging.LogUtils;
 
 /**
  * See http://www.originlab.com/doc/Origin-Help/2DFFT-Filter-Algorithm<br/>
@@ -56,7 +56,7 @@ public class FFTFactory {
                 filter = getPowerFFilter(M, N, pParam);
                 break;
             default:
-                Logger.logError(FFTFactory.class, "Unknown type [" + pType + "], defaulting to low pass filter.");
+                LogUtils.logError(FFTFactory.class, "Unknown type [" + pType + "], defaulting to low pass filter.");
                 filter = getLowPassFilter(M, N, pParam);
                 break;
         }

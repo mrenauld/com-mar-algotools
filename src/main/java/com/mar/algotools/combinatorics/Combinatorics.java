@@ -3,7 +3,7 @@ package com.mar.algotools.combinatorics;
 import java.math.BigInteger;
 import java.util.ArrayList;
 
-import com.mar.framework.core.logging.Logger;
+import com.mar.framework.core.logging.LogUtils;
 
 public class Combinatorics {
 
@@ -18,11 +18,11 @@ public class Combinatorics {
     public static BigInteger getBinomialCoef(int pN, int pK) {
         /* Check that n >= k >= 0. */
         if (pK < 0) {
-            Logger.logError(Combinatorics.class, "Impossible to compute binomial coefficient with pK < 0");
+            LogUtils.logError(Combinatorics.class, "Impossible to compute binomial coefficient with pK < 0");
             return BigInteger.ONE;
         }
         if (pN < pK) {
-            Logger.logError(Combinatorics.class, "Impossible to compute binomial coefficient with pN < pK");
+            LogUtils.logError(Combinatorics.class, "Impossible to compute binomial coefficient with pN < pK");
             return BigInteger.ONE;
         }
 
@@ -153,7 +153,7 @@ public class Combinatorics {
      */
     public static int[] perm(int[] perm, int[] v) {
         if (perm.length != v.length) {
-            Logger.logError(Combinatorics.class,
+            LogUtils.logError(Combinatorics.class,
                     "Impossible to apply permutation: the arrays should have the same length.");
             return null;
         }
